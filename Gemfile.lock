@@ -1,16 +1,42 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    daemons (1.1.8)
-    eventmachine (0.12.10)
-    haml (3.1.4)
-    mime-types (1.17.2)
-    rack (1.4.1)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
-    sinatra (1.1.0)
+    addressable (2.2.7)
+    async-rack (0.5.1)
       rack (~> 1.1)
-      tilt (~> 1.1)
+    daemons (1.1.8)
+    em-http-request (0.3.0)
+      addressable (>= 2.0.0)
+      escape_utils
+      eventmachine (>= 0.12.9)
+    em-resolv-replace (1.1.2)
+    em-synchrony (0.2.0)
+      eventmachine (>= 0.12.9)
+    escape_utils (0.2.4)
+    eventmachine (0.12.10)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
+    faraday_middleware (0.8.4)
+      faraday (>= 0.7.4, < 0.9)
+    haml (3.1.4)
+    multipart-post (1.1.5)
+    rack (1.4.1)
+    rack-fiber_pool (0.9.1)
+    rack-protection (1.2.0)
+      rack
+    sinatra (1.3.2)
+      rack (~> 1.3, >= 1.3.6)
+      rack-protection (~> 1.2)
+      tilt (~> 1.3, >= 1.3.3)
+    sinatra-synchrony (0.1.1)
+      async-rack
+      em-http-request (= 0.3.0)
+      em-resolv-replace
+      em-synchrony (= 0.2.0)
+      rack-fiber_pool (= 0.9.1)
+      sinatra (>= 1.0)
     thin (1.2.7)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -21,7 +47,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  faraday
+  faraday_middleware
   haml
-  rest-client
-  sinatra
+  sinatra-synchrony
   thin
