@@ -11,7 +11,7 @@ get '/' do
 end
 
 get '/proxy' do
-  puts params[:uri]
+  logger.info params[:uri]
   Faraday.get(params[:uri]).body
 end
 
