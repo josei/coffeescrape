@@ -8,8 +8,7 @@ get '/' do
 end
 
 get '/proxy/*' do
-  #RestClient.get params[:uri], :content_type=>'text/html'
-  params[:splat]*"/"
+  RestClient.get params[:splat]*"/", :content_type=>'text/html'
 end
 
 helpers do
