@@ -10,8 +10,11 @@ get '/' do
   haml :index
 end
 
+get '/proxy2' do
+  params[:uri]
+end
+
 get '/proxy' do
-  logger.info params[:uri]
   Faraday.get(params[:uri]).body
 end
 
