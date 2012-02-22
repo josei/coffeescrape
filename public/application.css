@@ -6,6 +6,10 @@ body {
   padding: 0 1em;
 }
 
+#container {
+  width: 960px;
+}
+
 h1 {
   letter-spacing: -3px;
   font-size: 3.23em;
