@@ -7,13 +7,9 @@ get '/' do
   haml :index
 end
 
-get '/hi/:uri' do
-  "hi#{params[:uri]}"
-end
-
-get '/proxy/:uri' do
+get '/proxy/*' do
   #RestClient.get params[:uri], :content_type=>'text/html'
-  "hi#{params[:uri]}"
+  params[:splat]*"/"
 end
 
 helpers do
