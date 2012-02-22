@@ -1,0 +1,22 @@
+!!! 5
+%html
+  %head
+    %script{:src=>"https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
+    %script{:src=>"jquery.hotkeys.js"}
+    %script{:src=>"codemirror.js"}
+    %script{:src=>"javascript.js"}
+    %link{:rel=>"stylesheet", :href=>"codemirror.css"}
+    %link{:rel=>"stylesheet", :href=>"application.css"}
+    %script{:type=>"application/javascript"}= base_js
+    %title JavaScrape
+  %body
+    %a{:href=>'http://www.gsi.dit.upm.es'}
+      %img.logo{:src=>'gsi.png'}
+    %h1 JavaScrape
+    %p
+      %textarea#code.code{:name=>:code, :cols=>"120", :rows=>"30"}= example
+    %p
+      %input#run{:type=>"submit", :value=>"Run"}
+      %span.tip=escape_html "<ALT+R>"
+    %script{:type=>"application/javascript"}= code_mirror_js
+    %pre#result
