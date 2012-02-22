@@ -1,21 +1,14 @@
 # -*- encoding: utf-8 -*-
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/synchrony'
-require 'faraday'
-
-Faraday.default_adapter = :em_synchrony
+require 'rest_client'
 
 get '/' do
   haml :index
 end
 
-get '/proxy2' do
-  params[:uri]
-end
-
-get '/proxy' do
-  Faraday.get(params[:uri]).body
+get '/proxy/*' do
+  RestClient.get params[:splat]*"/", :content_type=>'text/html'
 end
 
 helpers do
@@ -34,7 +27,7 @@ helpers do
         $(document).bind('keydown', 'alt+r', function() { $("input#run").click(); });
 
         function get(real_url, callback) {
-          url = "/proxy?uri=" + encodeURIComponent(real_url);
+          url = "/proxy/" + encodeURIComponent(real_url);
           $.get(url, callback);
         }
         
