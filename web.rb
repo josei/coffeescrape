@@ -7,8 +7,8 @@ get '/' do
   haml :index
 end
 
-get '/hi' do
-  "hi"
+get '/hi/:uri' do
+  "hi#{params[:uri]}"
 end
 
 get '/proxy/:uri' do
