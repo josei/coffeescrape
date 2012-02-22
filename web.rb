@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+require 'rubygems'
 require 'sinatra'
 require 'rest_client'
 
@@ -6,9 +7,12 @@ get '/' do
   haml :index
 end
 
+get '/hi' do
+  "hi"
+end
+
 get '/proxy/:uri' do
-  "testing"
-  #RestClient.get params[:uri], :content_type=>'text/html'
+  RestClient.get params[:uri], :content_type=>'text/html'
 end
 
 helpers do
