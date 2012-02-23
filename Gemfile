@@ -1,5 +1,6 @@
 source :rubygems
-gem 'sinatra'
+gem 'sinatra-synchrony', :require=>'sinatra/synchrony'
+gem 'faraday'
+gem 'faraday_middleware'
 gem 'thin'
 gem 'haml'
-gem 'rest-client'
