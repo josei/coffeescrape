@@ -31,10 +31,19 @@ helpers do
           $.get(url, callback);
         }
         
-        function println(text) {
-          $("pre#result").text($("pre#result").text()+text+"\\n");
+        function linkify(html) {
+          var noProtocolUrl = /(^|["'(\\s]|&lt;)(www\\..+?\\..+?)((?:[:?]|\\.+)?(?:\\s|$)|&gt;|[)"',])/g;
+          var httpOrMailtoUrl = /(^|["'(\\s]|&lt;)((?:(?:https?|ftp):\\/\\/|mailto:).+?)((?:[:?]|\\.+)?(?:\\s|$)|&gt;|[)"',])/g;
+          return html.replace( noProtocolUrl, '$1<a class="previewlink" href="<``>://$2">$2</a>$3' )
+                     .replace( httpOrMailtoUrl, '$1<a class="previewlink" href="$2">$2</a>$3' )
+                     .replace( /"<``>/g, '"http' );
         }
-        
+
+        function println(text) {
+          $("pre#result").html($("pre#result").html()+linkify(text)+"\\n");
+          bindBubbles();
+        }
+
       });
     EOS
   end
@@ -55,6 +64,7 @@ helpers do
 get("http://engadget.com", function(result) {
   $(result).find("h4.post_title a").each(function() {
     println($(this).text());
+    println($(this).attr("href"));
   });
 });
     EOS
