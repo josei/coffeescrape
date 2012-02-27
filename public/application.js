@@ -1,11 +1,7 @@
 jQuery(function($) {
   $("input#run").click(function() {
     $("pre#result").text("");
-    try {
-      eval(editor.getValue());
-    } catch(err) {
-      alert("Error:\n" + err.message);
-    }
+    eval(editor.getValue());
   });
   
   $(document).bind('keydown', 'alt+r', function() { $("input#run").click(); });
