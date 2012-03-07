@@ -10,7 +10,12 @@ jQuery(function($) {
     url = "/get?uri=" + encodeURIComponent(real_url);
     $.get(url, callback);
   }
-  
+
+  function post(real_url, params, callback) {
+    url = "/post?uri=" + encodeURIComponent(real_url);
+    $.post(url, params, callback);
+  }
+
   function linkify(html) {
     var noProtocolUrl = /(^|["'(\s]|&lt;)(www\..+?\..+?)((?:[:?]|\.+)?(?:\s|$)|&gt;|[)"',])/g;
     var httpOrMailtoUrl = /(^|["'(\s]|&lt;)((?:(?:https?|ftp):\/\/|mailto:).+?)((?:[:?]|\.+)?(?:\s|$)|&gt;|[)"',])/g;
@@ -20,6 +25,7 @@ jQuery(function($) {
   }
 
   function println(text) {
-    $("pre#result").html($("pre#result").html()+linkify(text)+"\n");    
+    var escaped_text = $("<div></div>").text(text).html();
+    $("pre#result").html($("pre#result").html() + linkify(escaped_text) + "\n");
   }
 });

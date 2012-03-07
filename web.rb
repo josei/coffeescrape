@@ -21,6 +21,10 @@ class JavaScrape < Sinatra::Base
     Connection.get(params[:uri]).body
   end
 
+  post '/post' do
+    Connection.post(params[:uri], params.reject{|k| k=="uri"}).body
+  end
+
   helpers do
     def code_mirror_js
       <<-EOS
