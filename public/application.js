@@ -25,7 +25,7 @@ jQuery(function($) {
   }
 
   function println(text) {
-    var escaped_text = $("<div></div>").text(text).html();
+    var escaped_text = $("<div></div>").text(text.toString()).html();
     $("pre#result").html($("pre#result").html() + linkify(escaped_text) + "\n");
   }
 });
