@@ -1,7 +1,7 @@
 jQuery(function($) {
   $("input#run").click(function() {
     $("pre#result").text("");
-    eval(editor.getValue());
+    eval(CoffeeScript.compile(editor.getValue()));
   });
   
   $(document).bind('keydown', 'alt+r', function() { $("input#run").click(); });

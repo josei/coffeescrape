@@ -29,7 +29,7 @@ class JavaScrape < Sinatra::Base
     def code_mirror_js
       <<-EOS
         editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-          mode: 'javascript',
+          mode: 'coffeescript',
           lineNumbers: true,
           extraKeys: { 'Alt-R': function() { $("input#run").click(); } },
           matchBrackets: true
@@ -39,13 +39,11 @@ class JavaScrape < Sinatra::Base
   
     def example
       <<-EOS
-get("http://engadget.com", function(result) {
-  $(result).find("h4.post_title a").each(function() {
-    println($(this).text());
-    println($(this).attr("href"));
-  });
-});
-      EOS
+get "http://engadget.com", (result) ->
+  $(result).find("h4.post_title a").each ->
+    println $(this).text()
+    println $(this).attr("href")
+EOS
     end
   end
 end
